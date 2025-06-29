@@ -4,7 +4,7 @@
 
 1. **Clone the repository:**
    \`\`\`bash
-   git clone https://github.com/yourusername/nextjs-docker-app.git
+   git clone https://github.com/abhinavroy83/nextjs-docker-app.git
    cd nextjs-docker-app
    \`\`\`
 
