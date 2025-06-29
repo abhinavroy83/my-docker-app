@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Docker Application
+
+This is a Next.js application configured to run in Docker containers.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
+- Docker Desktop installed
+- Node.js (for local development)
+
+### Building and Running
+
+1. **Build the Docker image:**
+   \`\`\`bash
+   docker build -t nextjs-app .
+   \`\`\`
+
+2. **Run the container:**
+   \`\`\`bash
+   docker run -p 3000:3000 nextjs-app
+   \`\`\`
+
+3. **Using Docker Compose:**
+   \`\`\`bash
+   docker-compose up --build
+   \`\`\`
+
+### Development vs Production
+
+**Development:**
+\`\`\`bash
+
+# Run locally for development
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Production:**
+\`\`\`bash
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Build and run in Docker
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+docker build -t nextjs-app .
+docker run -p 3000:3000 nextjs-app
+\`\`\`
 
-## Learn More
+### Docker Commands Reference
 
-To learn more about Next.js, take a look at the following resources:
+\`\`\`bash
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build image
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+docker build -t nextjs-app .
 
-## Deploy on Vercel
+# Run container
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+docker run -p 3000:3000 nextjs-app
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Run in background
+
+docker run -d -p 3000:3000 nextjs-app
+
+# View running containers
+
+docker ps
+
+# Stop container
+
+docker stop <container-id>
+
+# View logs
+
+docker logs <container-id>
+
+# Remove container
+
+docker rm <container-id>
+
+# Remove image
+
+docker rmi nextjs-app
+\`\`\`
+
+### Multi-stage Build Benefits
+
+1. **Smaller final image** - Only production dependencies
+2. **Security** - No build tools in production
+3. **Efficiency** - Cached layers for faster rebuilds
+4. **Clean separation** - Build vs runtime environments
+
+### Best Practices Implemented
+
+- ✅ Multi-stage build for optimization
+- ✅ Non-root user for security
+- ✅ .dockerignore for smaller context
+- ✅ Standalone output for minimal runtime
+- ✅ Proper layer caching
+- ✅ Environment variable support
